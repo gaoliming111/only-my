@@ -1,0 +1,82 @@
+版本控制系统：
+  1.记录历史版本信息（记录每一次的修改的记录）
+  2.方便团队相互间协作开发
+常用的版本控制系统：
+   cvs/svn：集中式版本控制系统
+   git：分布式版本控制系统
+
+
+Git 工作原理
+*工作区：我们能看到的，并且用来写代码的区域
+*暂存区：临时存储用的
+*历史区：生成历史版本
+
+工作区-$git add -A --->暂存区-$git commit -m --->历史区--$git pull origin master($git push origin master) -->中央仓库
+
+**代码回滚（从历史区取出）:$git check
+**暂存区撤回：$git 
+
+
+
+               /****    使用git  ****/
+**git使用全局配置（安装后配置一次即可）（必须配置）
+//查看配置信息  $git config -l   
+//查看全局配置信息   $git config --global -l 
+//添加信息  姓名:$git config --global user.name 'xxx'
+//添加信息  邮箱:$git config --global user.email 'xx@xxx.xx'(邮箱需要和github一样，后期用)
+
+
+**创建git本地仓库
+$git init   //=>会生成一个隐藏文件夹“.git”(暂存区、历史区都在这里，这个文件很重要（必须存在）)
+**首先找一个文件夹作为你的本地仓库（然后在空文件夹里又建  bash 开始 init）
+****将文件传入暂存区
+$git add xx  某个文件提交
+$git add -A    把当前仓库所有最新修改的文件提交
+**查看当前文件的状态
+$ git status （红色：工作区 绿色：暂存区  看不见东西证明所有修改的信息都以提交到历史区）
+****将暂存区内容提交到历史区
+$ git commit -m'描述信息：本次提交内容的一个描述'
+**查看历史版本信息（历史记录）
+$git log 
+$git reflog  (包含回滚信息)
+
+/** 从工作区提交到暂存区，从暂存提交到历史区，内容是通过复制进行的，本区域中依然存在信息，只有这样才能对比出哪些在某个区 **/ 
+
+****回退到哪个版本
+$git reset --hard 历史代码号
+
+          /**github**/
+***github:这里面有插件，类库，框架，都可以下载研究。
+
+
+  登录后右上角
+1.settings 用户设置
+   。profile  修改基本信息
+   。Account  账户信息 修改用户名
+   。security  可以修改直接的密码
+2.创建仓库
+  右上角仓库 new repositor  
+   。public 公共仓库作为开源项目
+   。private 私有仓库作为内部开发时使用 
+   。仓库里setting删除仓库 Delete **** 
+          collaborators->增加协作者
+    code 里可查看历史信息
+3.把本地仓库信息提交到远程仓库
+    1、建立本地仓库和远程仓库的链接
+     $git remote -v  查看本地仓库和哪些远程仓库有链接
+     $git remote add origin [git仓库地址]
+     $git remote rm origin （删除建立的链接）
+     //*提交之前先拉取*//
+     $git pull origin master
+     //*把本地代码提交到远程仓库 （需要输入github的用户名密码）*//
+     $git push origin master
+     
+                /**从仓库下载**/
+     $git clone [远程仓库git地址][别名：可以不设置，默认是仓库名]
+     $git clone 基于仓库克隆下载
+         解决了三个事情：（不需要再初始化本地仓库$git init）
+		          (和远程仓库直接建立联系)
+			  （不需要再pull，直接$git push即可）
+       /*****模块管理node长期支持板*****/
+      在node官网https://nodejs.org/zh-cn/       
+
